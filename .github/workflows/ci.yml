@@ -9,6 +9,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@master
+    - uses: actions-rs/cargo@v1
+      with:
+        command: build
+        args: --release --all-features
     - name: Install and test
       run: |
         curl https://nixos.org/nix/install | sh

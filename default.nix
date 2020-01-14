@@ -1,4 +1,4 @@
-{ pkgs ? import <nixpkgs> {} }:
+{ pkgs ? import ./pinned.nix {} }:
 
 let
   dynamic-linker = pkgs.stdenv.cc.bintools.dynamicLinker;
