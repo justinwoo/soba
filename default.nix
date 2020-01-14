@@ -9,7 +9,7 @@ pkgs.stdenv.mkDerivation rec {
 
   src = pkgs.fetchurl {
     url = "https://github.com/justinwoo/soba/releases/download/2020-01-14/soba";
-    sha256 = "1sq8x1jjq2391dav0l4880sp7xi754iabqql2yvggf1y65apmfzm";
+    sha256 = "1hh2b97d6pp6kshbygy1jcsxixg63d2c780hvamwkv81lfnaydiq";
   };
 
   buildInputs = [ pkgs.makeWrapper ];
