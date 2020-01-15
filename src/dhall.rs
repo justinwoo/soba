@@ -2,34 +2,7 @@ use std::fs;
 use std::path::Path;
 use std::process::{exit, Command};
 
-macro_rules! handle_failure {
-    ($program: expr, $output: ident) => {
-        let stdout = String::from_utf8_lossy(&$output.stdout);
-        let stderr = String::from_utf8_lossy(&$output.stderr);
-
-        eprintln!(
-            "$program exited with non-zero status: {:?}{stdout}{stderr}",
-            $output.status.code(),
-            stdout = optional_line!(stdout),
-            stderr = if stderr.is_empty() {
-                format!("\n{}", stderr)
-            } else {
-                "".to_owned()
-            }
-        );
-        exit(1);
-    };
-}
-
-macro_rules! optional_line {
-    ($id: ident) => {
-        if $id.is_empty() {
-            format!("\n{}", $id)
-        } else {
-            "".to_owned()
-        }
-    };
-}
+use crate::handle_failure;
 
 // convert the packages dhall to json via `dhall-to-json --file packages.dhall`
 pub fn packages_dhall_to_json() -> String {
