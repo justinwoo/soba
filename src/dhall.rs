@@ -16,7 +16,7 @@ pub fn packages_dhall_to_json() -> String {
         let stdout = String::from_utf8_lossy(&output.stdout);
         stdout.to_string()
     } else {
-        handle_failure!(dhall - to - json, output);
+        handle_failure!("dhall-to-json", output);
     }
 }
 
@@ -44,6 +44,6 @@ pub fn update_packages_dhall() {
     if output.status.success() {
         eprintln!("Updated packages.dhall.");
     } else {
-        handle_failure!(dhall, output);
+        handle_failure!("dhall", output);
     }
 }

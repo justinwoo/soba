@@ -1,4 +1,5 @@
 use soba::dhall;
+use soba::nix;
 use soba::psc_package;
 
 fn setup() {
@@ -16,6 +17,10 @@ fn insdhall() {
     psc_package::write_local_package_set();
 }
 
+fn to_nix() {
+    nix::make_purs_packages_nix()
+}
+
 fn main() {
     let args: Vec<String> = std::env::args().collect();
 
@@ -30,6 +35,7 @@ fn main() {
         "update" => update(),
         "insdhall" => insdhall(),
         "setup" => setup(),
+        "nix" => to_nix(),
         s => {
             eprintln!("Unknown command: {}", s);
             eprintln!("{}", USAGE_ERROR);
@@ -54,4 +60,8 @@ Commands:
         do an update of the local package set from the packages.dhall.
 
     setup
-        do some initial setup for a project (packages.dhall, local package set, config)."#;
+        do some initial setup for a project (packages.dhall, local package set, config).
+
+    nix
+        generate a purs-packages.nix file based on the local package set.
+        requires `insdhall` to be run first."#;

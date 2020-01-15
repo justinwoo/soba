@@ -31,6 +31,7 @@ pkgs.mkShell {
     easy-ps.psc-package
     easy-dhall.dhall-simple
     easy-dhall.dhall-json-simple
+    pkgs.nix-prefetch-git
     pkgs.cacert
   ];
 }

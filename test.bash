@@ -18,3 +18,5 @@ psc-package build
 $SOBA update
 $SOBA insdhall
 psc-package build
+
+$SOBA nix

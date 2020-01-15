@@ -1,10 +1,12 @@
 pub mod dhall;
+pub mod nix;
 pub mod psc_package;
+pub mod types;
 
 #[macro_export]
 macro_rules! optional_line {
     ($id: ident) => {
-        if $id.is_empty() {
+        if !$id.is_empty() {
             format!("\n{}", $id)
         } else {
             "".to_owned()
@@ -19,15 +21,12 @@ macro_rules! handle_failure {
         let stderr = String::from_utf8_lossy(&$output.stderr);
 
         eprintln!(
-            "$program exited with non-zero status: {:?}{stdout}{stderr}",
+            "{program} exited with non-zero status: {:?}{stdout}{stderr}",
             $output.status.code(),
+            program = $program,
             stdout = super::optional_line!(stdout),
-            stderr = if stderr.is_empty() {
-                format!("\n{}", stderr)
-            } else {
-                "".to_owned()
-            }
+            stderr = super::optional_line!(stderr),
         );
-        exit(1);
+        exit(1)
     };
 }

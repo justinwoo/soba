@@ -3,3 +3,5 @@
 /.psc-package
 /packages.dhall
 /psc-package.json
+/purs-packages.nix
+/.cache
