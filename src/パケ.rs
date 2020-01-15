@@ -3,11 +3,11 @@ use std::fs;
 use std::path::{Path, PathBuf};
 use std::process::{exit, Command};
 
-use crate::dhall::packages_dhall_to_json;
-use crate::handle_failure;
-use crate::types::*;
+use crate::ダル::パケダルツウジェソン;
+use crate::失敗処理;
+use crate::系::*;
 
-pub fn get_packages_json_path() -> PathBuf {
+pub fn パケジェソンパスゲット() -> PathBuf {
     let dir = Path::new(".psc-package/local/.set");
     let mut target = PathBuf::new();
     target.push(dir);
@@ -18,61 +18,60 @@ pub fn get_packages_json_path() -> PathBuf {
     target
 }
 
-pub fn write_local_package_set() {
-    let json = packages_dhall_to_json();
+pub fn ロカルパケセット書() {
+    let json = パケダルツウジェソン();
 
-    let target = get_packages_json_path();
+    let target = パケジェソンパスゲット();
 
     fs::write(target, json).expect("Could not write target local package set file.");
 
     eprintln!("Wrote local package set using packages.dhall.");
 }
 
-pub fn init() {
+pub fn 開始() {
     let target = Path::new("psc-package.json");
 
     if !target.exists() {
-        fs::write(target, PSC_PACKAGE_JSON).expect("Could not write psc-package.json.");
+        fs::write(target, パケ_JSON).expect("Could not write psc-package.json.");
         eprintln!("Wrote local setup initial psc-package.json.");
     } else {
         eprintln!("psc-package.json already exists, did nothing.");
     }
 }
 
-// get full dependencies list from psc-package
-pub fn get_dependencies() -> Vec<PackageName> {
+pub fn デプ取り() -> Vec<パケ名> {
     let output = Command::new("psc-package")
         .arg("dependencies")
         .output()
         .expect("Could not launch psc-package. Make sure you have it in PATH.");
 
     if output.status.success() {
-        let stdout = String::from_utf8_lossy(&output.stdout);
-        let string = stdout.to_string();
-        string
+        let stdout = 字線::from_utf8_lossy(&output.stdout);
+        let 字線 = stdout.to_string();
+        字線
             .split("\n")
-            .filter_map(|string| {
-                if string.is_empty() {
+            .filter_map(|字線| {
+                if 字線.is_empty() {
                     None
                 } else {
-                    Some(string.to_owned())
+                    Some(字線.to_owned())
                 }
             })
             .collect()
     } else {
-        handle_failure!("psc_package", output);
+        失敗処理!("psc-package", output);
     }
 }
 
-pub fn get_packages() -> HashMap<PackageName, Package> {
-    let target = get_packages_json_path();
-    let string = fs::read_to_string(target)
+pub fn パケゲット() -> HashMap<パケ名, パケ> {
+    let target = パケジェソンパスゲット();
+    let 字線 = fs::read_to_string(target)
         .expect("Could not read packages.json. Have you set up the psc-package.json file?");
-    serde_json::from_str(&string)
+    serde_json::from_str(&字線)
         .expect("Error: could not parse packages.json. This file may be corrupted.")
 }
 
-pub const PSC_PACKAGE_JSON: &str = r#"{
+pub const パケ_JSON: &str = r#"{
   "name": "name",
   "set": "local",
   "source": ".psc-package",

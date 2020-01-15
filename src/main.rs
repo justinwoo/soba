@@ -1,50 +1,53 @@
-use soba::dhall;
-use soba::nix;
-use soba::psc_package;
+#![feature(non_ascii_idents)]
 
-fn setup() {
-    dhall::init_packages_dhall();
-    psc_package::init();
-    psc_package::write_local_package_set();
+use soba::ダル;
+use soba::肉s;
+use soba::パケ;
+use soba::系::*;
+
+fn セットアップ() {
+    ダル::パケダル始();
+    パケ::開始();
+    パケ::ロカルパケセット書();
 }
 
-fn update() {
-    dhall::update_packages_dhall();
-    psc_package::write_local_package_set();
+fn アップデート() {
+    ダル::パケダルアップ();
+    パケ::ロカルパケセット書();
 }
 
-fn insdhall() {
-    psc_package::write_local_package_set();
+fn インスダル() {
+    パケ::ロカルパケセット書();
 }
 
-fn to_nix() {
-    nix::make_purs_packages_nix()
+fn ツウ肉s() {
+    肉s::パケ肉s作り()
 }
 
 fn main() {
-    let args: Vec<String> = std::env::args().collect();
+    let args: Vec<字線> = std::env::args().collect();
 
     if args.len() < 2 {
-        eprintln!("{}", USAGE_ERROR);
+        eprintln!("{}", ユーザー有罪);
         std::process::exit(1);
     }
 
     let command = &args[1];
 
     match command.as_str() {
-        "update" => update(),
-        "insdhall" => insdhall(),
-        "setup" => setup(),
-        "nix" => to_nix(),
+        "update" => アップデート(),
+        "insdhall" => インスダル(),
+        "setup" => セットアップ(),
+        "nix" => ツウ肉s(),
         s => {
             eprintln!("Unknown command: {}", s);
-            eprintln!("{}", USAGE_ERROR);
+            eprintln!("{}", ユーザー有罪);
             std::process::exit(1);
         }
     }
 }
 
-const USAGE_ERROR: &str = r#"soba: prepare psc-package sets from dhall
+const ユーザー有罪: &str = r#"soba: prepare psc-package sets from dhall
 
 Usage:
 

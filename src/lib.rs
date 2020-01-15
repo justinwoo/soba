@@ -1,7 +1,9 @@
-pub mod dhall;
-pub mod nix;
-pub mod psc_package;
-pub mod types;
+#![feature(non_ascii_idents)]
+
+pub mod ダル;
+pub mod 肉s;
+pub mod パケ;
+pub mod 系;
 
 #[macro_export]
 macro_rules! optional_line {
@@ -15,7 +17,7 @@ macro_rules! optional_line {
 }
 
 #[macro_export]
-macro_rules! handle_failure {
+macro_rules! 失敗処理 {
     ($program: expr, $output: ident) => {
         let stdout = String::from_utf8_lossy(&$output.stdout);
         let stderr = String::from_utf8_lossy(&$output.stderr);
