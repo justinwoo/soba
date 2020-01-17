@@ -7,8 +7,8 @@ let
     pkgs.fetchFromGitHub {
       owner = "justinwoo";
       repo = "easy-purescript-nix";
-      rev = "cd549a1fb33252f3fb2d807d4c8ea4a19903230f";
-      sha256 = "1vl0h5k0bcn2v6b10sj2jjyvnzvq16qfq527g1xi3gzjx7ylfs0g";
+      rev = "485471b86f764b9dd34e77ae767a629290f7f295";
+      sha256 = "0fh7sxpnp8krs091imksrs6w3vw31sq9kpz26mdw1kbpa8f0sgby";
     }
   ) {
     inherit pkgs;
@@ -31,8 +31,8 @@ pkgs.stdenv.mkDerivation rec {
   name = "soba";
 
   src = pkgs.fetchurl {
-    url = "https://github.com/justinwoo/soba/releases/download/2020-01-14/soba";
-    sha256 = "1hh2b97d6pp6kshbygy1jcsxixg63d2c780hvamwkv81lfnaydiq";
+    url = "https://github.com/justinwoo/soba/releases/download/2020-01-17/soba";
+    sha256 = "0spxfyxnqcwxf4jv91by0drjrmwb86q5bq2k06rw3mqlj4ckcbw3";
   };
 
   buildInputs = [ pkgs.makeWrapper ];
@@ -40,6 +40,14 @@ pkgs.stdenv.mkDerivation rec {
   dontStrip = true;
 
   libPath = pkgs.lib.makeLibraryPath [ pkgs.glibc ];
+
+  bins = [
+    easy-ps.purs
+    easy-ps.psc-package
+    easy-dhall.dhall-simple
+    easy-dhall.dhall-json-simple
+    pkgs.nix-prefetch-git
+  ];
 
   unpackPhase = ''
     mkdir -p $out/bin
@@ -53,12 +61,7 @@ pkgs.stdenv.mkDerivation rec {
       --set-rpath ${libPath}
 
     wrapProgram $TARGET \
-      --prefix PATH : ${pkgs.lib.makeBinPath [
-        easy-ps.purs
-        easy-ps.psc-package
-        easy-dhall.dhall-simple
-        easy-dhall.dhall-json-simple
-      ]}
+      --prefix PATH : ${pkgs.lib.makeBinPath bins}
   '';
 
   dontInstall = true;
