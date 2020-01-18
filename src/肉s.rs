@@ -99,7 +99,7 @@ pub fn prepare_drv(情報: &パケ情報) -> 字線 {
       version = "{馬ジョン}";
       fetched = pkgs.fetchgit {{
         url = "{url}";
-        repo = "{レボ}";
+        rev = "{レボ}";
         sha256 = "{社}";
       }};
     }};
