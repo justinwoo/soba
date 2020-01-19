@@ -26,6 +26,10 @@ Commands:
     setup
         do some initial setup for a project (packages.dhall, local package set, config).
 
+    nix
+        generate a purs-packages.nix file based on the local package set.
+        requires `insdhall` to be run first.
+
 $ soba insdhall
 Wrote local package set using packages.dhall.
 ```
