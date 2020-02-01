@@ -31,7 +31,7 @@ pkgs.stdenv.mkDerivation rec {
   name = "soba";
 
   src = pkgs.fetchurl {
-    url = "https://github.com/justinwoo/soba/releases/download/2020-01-18/soba";
+    url = "https://github.com/justinwoo/soba/releases/download/2020-02-01/soba";
     sha256 = "1lxbz6q6g7ak3yf7p182pz2qkmg80154my1hl685773r6gyb7mms";
   };
 
