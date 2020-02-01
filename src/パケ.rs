@@ -8,14 +8,18 @@ use crate::失敗処理;
 use crate::系::*;
 
 pub fn パケジェソンパスゲット() -> PathBuf {
-    let dir = Path::new(".psc-package/local/.set");
-    let mut target = PathBuf::new();
-    target.push(dir);
-    target.push("packages.json");
+    // psc-package前バージョンのコード
+    // v0.6.0からは無用
+    // let dir = Path::new(".psc-package/local/.set");
+    // let mut target = PathBuf::new();
+    // target.push(dir);
+    // target.push("packages.json");
 
-    fs::create_dir_all(dir).expect("Could not create directories for local package set.");
+    // fs::create_dir_all(dir).expect("Could not create directories for local package set.");
 
-    target
+    // target
+
+    Path::new("packages.json").to_path_buf()
 }
 
 pub fn ロカルパケセット書() {
@@ -74,7 +78,7 @@ pub fn パケゲット() -> HashMap<パケ名, パケ> {
 pub const パケ_JSON: &str = r#"{
   "name": "name",
   "set": "local",
-  "source": ".psc-package",
+  "source": "packages.json",
   "depends": [
     "console",
     "prelude"
