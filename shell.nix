@@ -24,6 +24,10 @@ let
     inherit pkgs;
   };
 
+  includePaths = pkgs.lib.makeLibraryPath [
+    pkgs.glibc
+  ];
+
 in
 pkgs.mkShell {
   buildInputs = [
@@ -34,4 +38,8 @@ pkgs.mkShell {
     pkgs.nix-prefetch-git
     pkgs.cacert
   ];
+
+  shellHook = ''
+    export LIBRARY_PATH=${includePaths}
+  '';
 }
