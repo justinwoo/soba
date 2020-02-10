@@ -7,8 +7,8 @@ let
     pkgs.fetchFromGitHub {
       owner = "justinwoo";
       repo = "easy-purescript-nix";
-      rev = "17d40cef56527d3d337f136d2dbc5514f7742470";
-      sha256 = "0smi1rzdgiwjbrbcnfmq4an0snimxsr9x2kwkic4irwnm9c8wa1d";
+      rev = "d5f44b9389b290874cc3e479741b746067f19a78";
+      sha256 = "0vswaasg2ik7csi40a0ihpxxzp4c803z7mjd096f3lmjrbw4j4av";
     }
   ) {
     inherit pkgs;
@@ -18,8 +18,8 @@ let
     pkgs.fetchFromGitHub {
       owner = "justinwoo";
       repo = "easy-dhall-nix";
-      rev = "29769888e2918470d5a4c65ef5ea331af635bc07";
-      sha256 = "16xk5w3xfb38p57sdlmm3mdbnrji2j69zwkzzc4jnhj0srkawzsd";
+      rev = "735ad924fd829c9bbee0a167e0b2bbbf91e2cad5";
+      sha256 = "1r3sqs1cz0mcfwfvaq1d21vnppg5sqzqdl6w9krsw5ad5czkk190";
     }
   ) {
     inherit pkgs;
@@ -32,7 +32,7 @@ pkgs.stdenv.mkDerivation rec {
 
   src = pkgs.fetchurl {
     url = "https://github.com/justinwoo/soba/releases/download/2020-02-01/soba";
-    sha256 = "1lxbz6q6g7ak3yf7p182pz2qkmg80154my1hl685773r6gyb7mms";
+    sha256 = "0sjyiy9ywjwlamf1ap9x49pglxxcm3lbjlg36y29fyiy5ybi2ady";
   };
 
   buildInputs = [ pkgs.makeWrapper ];
