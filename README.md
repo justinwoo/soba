@@ -4,6 +4,8 @@ packages.dhall to local psc-package set
 
 If you don't know what this is, then don't worry about it.
 
+Maybe you should use this instead: https://github.com/justinwoo/psc-package-nix/
+
 ## about
 
 ```
